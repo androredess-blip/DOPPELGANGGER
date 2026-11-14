@@ -1,0 +1,51 @@
+{
+  "indicadores": {
+    "frio":       { "nombre": "Frío extremo",            "fuente": "NASA POWER · T2M_MIN (°C)",            "tipo": "clima", "campo": "T2M_MIN",  "min": 15,  "max": -40 },
+    "oscilacion": { "nombre": "Oscilación día/noche",    "fuente": "NASA POWER · T2M_RANGE (°C)",          "tipo": "clima", "campo": "T2M_RANGE", "min": 5,   "max": 20 },
+    "aridez":     { "nombre": "Aridez",                  "fuente": "NASA POWER · PRECTOTCORR (mm/día)",    "tipo": "clima", "campo": "PRECTOTCORR", "min": 2, "max": 0 },
+    "seco":       { "nombre": "Aire seco",               "fuente": "NASA POWER · RH2M (%)",                "tipo": "clima", "campo": "RH2M",     "min": 80,  "max": 15 },
+    "viento":     { "nombre": "Viento",                  "fuente": "NASA POWER · WS10M (m/s)",             "tipo": "clima", "campo": "WS10M",    "min": 2,   "max": 8 },
+    "altitud":    { "nombre": "Aire delgado (altitud)",  "fuente": "NASA POWER · elevación del punto (m)", "tipo": "clima", "campo": "elev",     "min": 0,   "max": 4500 },
+    "sol_bajo":   { "nombre": "Sol bajo (latitud)",      "fuente": "Latitud del sitio (°)",                "tipo": "geo",   "campo": "lat_abs",  "min": 30,  "max": 75 },
+
+    "basalto":     { "nombre": "Basalto volcánico",           "tipo": "rasgo" },
+    "crateres":    { "nombre": "Cráteres",                    "tipo": "rasgo" },
+    "dunas":       { "nombre": "Dunas o formas eólicas",      "tipo": "rasgo" },
+    "sales":       { "nombre": "Sales, sulfatos, percloratos","tipo": "rasgo" },
+    "hielo":       { "nombre": "Hielo o permafrost",          "tipo": "rasgo" },
+    "paleolago":   { "nombre": "Sedimentos de agua antigua",  "tipo": "rasgo" },
+    "extremofilos":{ "nombre": "Vida extremófila",            "tipo": "rasgo" },
+    "cuevas":      { "nombre": "Cuevas o tubos de lava",      "tipo": "rasgo" },
+    "aislamiento": { "nombre": "Aislamiento",                 "tipo": "rasgo" }
+  },
+
+  "dimensiones": [
+    { "id": "geologia",    "nombre": "Geología y materiales",     "corto": "Geología",
+      "luna":  ["basalto", "crateres"],             "marte": ["basalto", "sales"] },
+    { "id": "terreno",     "nombre": "Terreno y topografía",      "corto": "Terreno",
+      "luna":  ["crateres"],                        "marte": ["crateres", "dunas"] },
+    { "id": "temperatura", "nombre": "Temperatura e iluminación", "corto": "Temp./luz",
+      "luna":  ["frio", "oscilacion", "sol_bajo"],  "marte": ["frio", "oscilacion", "altitud"] },
+    { "id": "agua",        "nombre": "Agua, hielo y permafrost",  "corto": "Agua/hielo",
+      "luna":  ["hielo", "aridez"],                 "marte": ["hielo", "paleolago", "aridez"] },
+    { "id": "polvo",       "nombre": "Polvo, viento y erosión",   "corto": "Polvo/viento",
+      "luna":  [],                                  "marte": ["viento", "dunas", "seco"] },
+    { "id": "vida",        "nombre": "Biología y habitabilidad",  "corto": "Vida",
+      "luna":  ["aridez", "seco"],                  "marte": ["extremofilos", "seco"] },
+    { "id": "subsuelo",    "nombre": "Cuevas y subsuelo",         "corto": "Subsuelo",
+      "luna":  ["cuevas"],                          "marte": ["cuevas"] },
+    { "id": "operaciones", "nombre": "Condiciones de operación",  "corto": "Operación",
+      "luna":  ["aislamiento"],                     "marte": ["aislamiento"] }
+  ],
+
+  "pesos": {
+    "luna":  { "geologia": 0.20, "terreno": 0.15, "temperatura": 0.20, "agua": 0.15, "polvo": 0,    "vida": 0.05, "subsuelo": 0.15, "operaciones": 0.10 },
+    "marte": { "geologia": 0.15, "terreno": 0.10, "temperatura": 0.15, "agua": 0.15, "polvo": 0.15, "vida": 0.15, "subsuelo": 0.05, "operaciones": 0.10 }
+  },
+
+  "niveles": [
+    { "desde": 70, "nombre": "Análogo fuerte" },
+    { "desde": 50, "nombre": "Análogo parcial" },
+    { "desde": 0,  "nombre": "Análogo débil" }
+  ]
+}
